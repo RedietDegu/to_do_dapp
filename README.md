@@ -3,47 +3,37 @@
 ## Authors
 
 - **Name**: Rediet Degu
-- **Email**: belaynehgetachew21@gmail.com
+- **Email**: redi.degu691@gmail.com
 - **Phone**: +251909142168
 - **WhatsApp**: +251909142168
 
 ---
 
-## Project Description
+# Project Overview  
 
-to-do-dapp is a multi-user to-do list application built with **Chromia**, **Rell**, and the **FT4 library**. It provides a secure platform for managing tasks, ensuring authentication and data integrity through blockchain.
+**to-do-dapp** is a multi-user to-do list application built using **Chromia**, **Rell**, and the **FT4 library**. It ensures secure task management with blockchain-based authentication.
 
-### Key Features:
+## Features  
 
-- **Task Management**: Add, update, complete, delete, sort, and filter tasks.
-- **Dashboard**: View summaries, including task trends and status.
-- **Authentication**: Secure user login via **MetaMask wallet**.
-- **Light/Dark Mode**: Toggle between themes.
-- **Mobile Responsive**: Optimized for cross-platform use.
+- Add, update, complete, and delete tasks.  
+- Filter tasks by status (completed/pending).  
+- Sort tasks by due date.  
 
 ---
 
-## How It Works
+## How It Works  
 
-### User Management
+### User Management  
 
-- **Account Creation**: Connect an **EVM wallet** (e.g., MetaMask) for secure user accounts.
-- **Authentication**: User actions are linked to the authenticated account.
+- Connect an **EVM wallet** (e.g., MetaMask) to create a secure account.  
+- User actions are authenticated and linked to the connected wallet.  
 
-### Task Management
+### Task Management  
 
-- Add, update, complete, and delete tasks.
-- Filter tasks by status (completed/pending).
-- Sort tasks by due date.
+- Add new tasks or update existing ones.  
+- Mark tasks as complete or delete them.  
+- Filter and sort tasks for better organization.  
 
-### Dashboard
-
-- Task summaries, including:
-  - Total tasks.
-  - Pending and completed tasks.
-  - Due date trends.
-
----
 
 ## Setup Instructions and Installation
 
@@ -66,14 +56,14 @@ to-do-dapp is a multi-user to-do list application built with **Chromia**, **Rell
 2. **Navigate to the Project Directory**:
 
 ```bash
-cd to-do-dapp
+cd to_do_dapp
 ```
 
 3. **Start the Backend**:
    \*\*\*Navigate to the backend folder and run the Chromia node:
 
 ```bash
-cd to-do-dapp-backend && chr node start
+cd to-do-dapp-backend && chr install && chr node start
 
 ```
 
@@ -84,7 +74,7 @@ cd to-do-dapp-backend && chr node start
 cd to-do-dapp-frontend
 ```
 
-**_User either yarn or npm_**:
+**_Use either yarn or npm_**:
 
 ```bash
 npm install
@@ -111,15 +101,3 @@ npm run dev
 
    ## [http://localhost:3000](http://localhost:3000)
 
-## Some screenshots for the application
-
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739373/home_page_black_ttsbrf.png" alt="Demo Screenshot" style="width: 100%;"/>
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739373/home-page_imr0k3.png" alt="Demo Screenshot" style="width: 100%;"/>
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739369/before-connected_j5iqaq.png" alt="Demo Screenshot" style="width: 100%;"/>
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739929/wallet_connecting_vgnnza.png" alt="Demo Screenshot" style="width: 100%;"/>
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739371/tasks_black_vvjypd.png" alt="Demo Screenshot" style="width: 100%;"/>
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739371/task-wite_z0nyaf.png" alt="Demo Screenshot" style="width: 100%;"/>
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739369/add-task-white_ylgxlc.png" alt="Demo Screenshot" style="width: 100%;"/>
-<img src="https://res.cloudinary.com/defapkeo8/image/upload/v1737739369/dashboard_black_yhoonv.png" alt="Demo Screenshot" style="width: 100%;"/>
-"# to_do_dapp" 
-"# to_do_dapp" 
