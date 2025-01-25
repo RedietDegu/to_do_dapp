@@ -1,0 +1,126 @@
+operation create_task(title: text, description: text, due_date: integer) {
+// rell-lint-disable-next-line
+    var account = auth.authenticate();
+    val user = user @ { account };
+    val task_id = op_context.transaction.tx_rid;
+    is_valid_date(due_date);
+    create task (
+        user_id = user.id,
+        id = task_id,
+        title = title,
+        description = description,
+        due_date = due_date,
+        status = "pending",
+    );
+}
+
+operation update_task(task_id: byte_array, title: text, description: text, status: text = "pending", due_date: integer ) {
+// rell-lint-disable-next-line
+    var account = auth.authenticate();
+    val user = user @ { account };
+    // var task = task @ { .id == task_id, .user_id == user.id };
+    is_valid_date(due_date);
+    update task @ {
+            .id == task_id,
+            .user_id == user.id
+    } (
+        id = task_id,
+        title = title,
+        description = description,
+        due_date = due_date,
+        status = status
+    );
+}
+
+operation delete_task(task_id: byte_array) {
+// rell-lint-disable-next-line
+    var account = auth.authenticate();
+    val user = user @ { account };
+    var task = task @ { .id == task_id, .user_id == user.id };
+    delete task;
+}
+
+operation complete_task(task_id: byte_array) {
+// rell-lint-disable-next-line
+    var account = auth.authenticate();
+    val user = user @ { account };
+    var task = task @ { .id == task_id, .user_id == user.id };
+
+    if(task.status == "completed") {
+        update task @ { .id == task_id, .user_id == user.id } ( .status = "pending" );
+    } else {
+     update task @ { .id == task_id, .user_id == user.id } ( .status = "completed" );
+     }
+}
+
+////////////////////////////////////////////////////////////////
+
+query get_all_tasks(
+    user_id: byte_array,
+    pointer: integer,
+    n_tasks: integer
+): (pointer: integer, tasks: list<task_dto>) {
+    val tasks = task @* {
+        .user_id == user_id,
+    } (
+        @sort_desc @omit task.rowid,
+        task_dto (
+            task.id,
+            task.title,
+            task.description,
+            task.status,
+            task.due_date,
+        )
+    ) offset pointer limit n_tasks;
+    return (
+        pointer = pointer + tasks.size(),
+        tasks = tasks
+    );
+}
+
+query get_single_task_by_id(user_id: byte_array, task_id: byte_array): task {
+    return task @ { .id == task_id, .user_id == user_id };
+}
+
+query get_tasks_by_due_date(
+    status: text,
+    pointer: integer,
+    n_tasks: integer
+): (pointer: integer, tasks: list<task_dto>) {
+    val tasks = task @* { .due_date == .due_date } (
+        @sort_desc @omit task.rowid,
+        task_dto (
+            task.id,
+            task.title,
+            task.description,
+            task.status,
+            task.due_date,
+        )
+    ) offset pointer limit n_tasks;
+    return (
+        pointer = pointer + tasks.size(),
+        tasks = tasks
+    );
+}
+
+query get_tasks_by_status(
+    status: text,
+    pointer: integer,
+    n_tasks: integer
+): (pointer: integer, tasks: list<task_dto>) {
+    val tasks = task @* { .status == status } (
+        @sort_desc @omit task.rowid,
+        task_dto (
+            task.id,
+            task.title,
+            task.description,
+            task.status,
+            task.due_date,
+        )
+    ) offset pointer limit n_tasks;
+    return (
+        pointer = pointer + tasks.size(),
+        tasks = tasks
+    );
+}
+////////////////////////////////////////////////////////////////

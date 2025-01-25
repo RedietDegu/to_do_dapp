@@ -1,0 +1,22 @@
+entity task {
+    key mutable id: byte_array;
+    index user_id: byte_array;
+    mutable title: text;
+    mutable description: text;
+    mutable due_date: integer;
+    mutable status: text;
+}
+
+entity user {
+  mutable name;
+  key id: byte_array;
+  key account;
+}
+
+struct task_dto {
+    id:byte_array;
+    title: text;
+    description:text;
+    status:text;
+    due_date:integer;
+}

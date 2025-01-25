@@ -1,0 +1,5 @@
+module;
+
+import chromia_task_management_backend;
+import app.*;
+import registration.*;
